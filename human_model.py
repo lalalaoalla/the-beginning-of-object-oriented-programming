@@ -45,10 +45,12 @@ class Human:
     def go_into_the_house(self, house):
         self.house=house
         cprint(f'Я {self.name} заехал в этот дом!!!!!!! {self.house}', color='blue')
+        House.count_citizens+=1
     
     def take_a_cat(self, nickname):
         self.cat=nickname
         cprint(f'{self.name} взял кота {self.cat}', color='light_blue')
+        House.count_cats+=1
 
     # def feed_the_cat(self):
     #     self.house.has_food-=50
@@ -133,14 +135,14 @@ house=House('Советская 123')
 
 for citizen in citizens:
     citizen.go_into_the_house(house=house)
-    House.count_citizens+=1
+    #House.count_citizens+=1
 
 
 chosen_citizen = choice(citizens)
 chosen_citizen.take_a_cat(nickname=cat)
 
 
-House.count_cats+=1
+
 
 for day in range (1,8):
     cprint(f"================day {day}==========================",color='red')
