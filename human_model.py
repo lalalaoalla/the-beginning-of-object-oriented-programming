@@ -60,15 +60,20 @@ class House:
         return f'В доме осталось столько еды - {self.has_food}, столько денег - {self.has_money}, а вот мой адрес - {self.addres}'
 
 
-Andrey = Human('Andrey')
-Olga=Human('Olga')
+
+citizens = [
+    Human('Andrey'),
+    Human('Olga')
+]
+
 house=House('Советская 123')
-Andrey.go_into_the_house(house=house)
-Olga.go_into_the_house(house=house)
+for citizen in citizens:
+    citizen.go_into_the_house(house=house)
+
 for day in range (1,8):
     cprint(f"================day {day}==========================",color='red')
-    Andrey.act()
-    Olga.act()
-    print(Andrey,Olga)
+    for citizen in citizens:
+        citizen.act()
+        print(citizen)
     print(house)
 #print(Andrey.go_into_the_house('Советская 123'))
