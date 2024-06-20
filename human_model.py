@@ -49,9 +49,10 @@ class Human:
     def take_a_cat(self, nickname):
         self.cat=nickname
         cprint(f'{self.name} взял кота {self.cat}', color='light_blue')
-    def feed_the_cat(self):
-        self.house.has_food-=50
-        self.cat.cat_food+=50
+
+    # def feed_the_cat(self):
+    #     self.house.has_food-=50
+    #     self.cat.cat_food+=50
 
 
     def act(self):
@@ -62,8 +63,8 @@ class Human:
             self.shopping()
         if (self.fatique>=10):
             self.play()
-        if(self.cat.cat_food <=10):
-            self.feed_the_cat()
+        # if(self.cat.cat_food <=10):
+        #     self.feed_the_cat()
 
 class House:
     count_citizens=0
@@ -81,12 +82,14 @@ class House:
 #
 class Cats:
     
-    def __init__(self,nickname):
+    def  __init__(self,nickname):
         self.nickname = nickname
-        self.cat_fullness=30
+        self.cat_fullness=10
         self.cat_fatique=0
         self.cat_fun=25
-        self.cat_food=0
+        self.cat_food=2000
+    def __str__(self):
+        return f'по имени {self.nickname}'
 
     def sleep(self):
         self.cat_fatique-=5
@@ -105,12 +108,11 @@ class Cats:
         cprint(f'{self.nickname} побегала по дому', color='red')
 
     def act(self):
-        if(self.cat_fun <=10):
-            self.running_around_the_house()
+        self.running_around_the_house()
         if(self.cat_fullness<=15 and self.cat_food>=10):
             self.cat_fun-=10
             self.eat()
-        else:
+        elif(self.cat_fullness<=5 and self.cat_food <=10):
             self.cat_fun-=10
             cprint(f'{self.nickname} очень голодная, ей нечего есть', color='red')
 
