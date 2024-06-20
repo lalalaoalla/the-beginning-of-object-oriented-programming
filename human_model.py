@@ -18,27 +18,26 @@ class Human:
     def work(self):
         if (self.house.has_money == 0):
             self.house.has_money+=100
-            self.fatique+=10
+            self.fatique+=40
             self.fullness-=20
-            cprint(f"Я - {self.name}, я заработал вот столько денег - {self.house.has_money}, а также устал - {self.fatique}, проголодался - {self.fullness}", color='yellow')
+            cprint(f"Я - {self.name},денег - {self.house.has_money}, устал - {self.fatique}, проголодался - {self.fullness}", color='yellow')
     
     def play(self):
-        if(self.fatique > 10):
+        if(self.fatique >= 10):
             self.fatique-=10
-            cprint(f'Я - {self.name}, я отдохнул - {self.fatique}',color='cyan')    
+            cprint(f'Я - {self.name}, я поиграл - {self.fatique}',color='cyan')    
 
     def shopping(self):
         if(self.house.has_money>1):
             while(self.house.has_money != 0):
-                self.house.has_food+=1
+                self.house.has_food+=10
                 self.house.has_money-=10
             cprint(f'Я {self.name}, я купил еду - {self.house.has_food}, у меня осталось столько денег - {self.house.has_money}', color='light_blue')    
     
     def eat(self):
-        if (self.fullness == 0):
             if(self.house.has_food !=0):
-                self.house.has_food-=1
-                self.fullness+=1
+                self.house.has_food-=20
+                self.fullness+=20
                 cprint(f"{self.name} поел",color='light_red')
     
     def go_into_the_house(self, house):
@@ -46,12 +45,16 @@ class Human:
         cprint(f'Я {self.name} заехал в этот дом!!!!!!! {self.house}', color='blue')
 
     def act(self):
-        self.eat()
+        if(self.fullness <=10):
+            self.eat()
         self.work()
-        self.shopping()
-        self.play()
+        if (self.house.has_food <=10):
+            self.shopping()
+        if (self.fatique>=10):
+            self.play()
 
 class House:
+    count_citizens=0
     def __init__(self, addres):
         self.has_food=10
         self.has_money=500
@@ -69,6 +72,7 @@ citizens = [
 house=House('Советская 123')
 for citizen in citizens:
     citizen.go_into_the_house(house=house)
+    House.count_citizens+=1
 
 for day in range (1,8):
     cprint(f"================day {day}==========================",color='red')
@@ -76,4 +80,4 @@ for day in range (1,8):
         citizen.act()
         print(citizen)
     print(house)
-#print(Andrey.go_into_the_house('Советская 123'))
+cprint(f'Я - дом с адресом {house.addres}, мое количесвто жителей - {House.count_citizens}', color='green')
