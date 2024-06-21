@@ -45,12 +45,12 @@ class Human:
     def go_into_the_house(self, house):
         self.house=house
         cprint(f'Я {self.name} заехал в этот дом!!!!!!! {self.house}', color='blue')
-        House.count_citizens+=1
+        house.count_citizens+=1
     
     def take_a_cat(self, nickname):
         self.cat=nickname
         cprint(f'{self.name} взял кота {self.cat}', color='light_blue')
-        House.count_cats+=1
+        house.count_cats+=1
 
     # def feed_the_cat(self):
     #     self.house.has_food-=50
@@ -69,12 +69,14 @@ class Human:
         #     self.feed_the_cat()
 
 class House:
-    count_citizens=0
-    count_cats=0
+    # count_citizens=0
+    # count_cats=0
     def __init__(self, addres):
         self.has_food=10
         self.has_money=500
         self.addres=addres
+        self.count_citizens=0
+        self.count_cats=0
     def __str__(self):
         return f'В доме осталось столько еды - {self.has_food}, столько денег - {self.has_money}, а вот мой адрес - {self.addres}'
 
@@ -157,4 +159,4 @@ for day in range (1,8):
     cprint(f'количество сытости у кошки - {cat.cat_fullness}',color='yellow')
     cprint(f'количество радости у кошки - {cat.cat_fun}',color='yellow')
     
-cprint(f'Я - дом с адресом {house.addres}, мое количесвто жителей - {House.count_citizens}, количество котов - {House.count_cats}', color='green')
+cprint(f'Я - дом с адресом {house.addres}, мое количесвто жителей - {house.count_citizens}, количество котов - {house.count_cats}', color='green')
