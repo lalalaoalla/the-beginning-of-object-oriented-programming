@@ -37,21 +37,35 @@ class Fraction:
                 return (self.number/other.number).as_integer_ratio()
             else:
                 cprint(f'На 0 делить нельзя',color='red')
+    
+    
+class OperatonsOnFraction(Fraction):
+    def __init__(self,a=0,b=1):
+        super().__init__(a=a,b=b)
+    def int_(self):
+        return int(self.number)
+    def float_(self):
+        return float(self.number)
+
 
     
 
 
-fraction1=Fraction(1,2)
-fraction2=Fraction(12,2)
+fraction1=OperatonsOnFraction(1,2)
+fraction2=OperatonsOnFraction(11,2)
 fraction1.act()
 fraction2.act()
 
-number_add=fraction1.__add__(fraction2)
-number_sub=fraction1.__sub__(fraction2)
-number_mul=fraction1.__mul__(fraction2)
-number_div=fraction1.__truediv__(fraction2)
+print(fraction1.float_())
+print(fraction2.int_())
+
+# number_add=fraction1.__add__(fraction2)
+# number_sub=fraction1.__sub__(fraction2)
+# number_mul=fraction1.__mul__(fraction2)
+# number_div=fraction1.__truediv__(fraction2)
+
 print(fraction1,fraction2)
-print(number_add)
-print(number_sub)
-print(number_mul)
-print(number_div)
+# print(number_add)
+# print(number_sub)
+# print(number_mul)
+# print(number_div)
